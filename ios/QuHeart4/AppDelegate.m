@@ -9,7 +9,6 @@
 
 #import "AppDelegate.h"
 
-
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "SplashScreen.h"

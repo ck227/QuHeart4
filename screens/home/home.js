@@ -1,9 +1,8 @@
-
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Image, Alert, View, Text, TouchableOpacity, Linking,} from 'react-native';
+import {AppRegistry, View, Text} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
 
     static navigationOptions = {
         title: 'Chat with Lucy',
@@ -12,11 +11,11 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View>
-                <Text>Chat with Lucy</Text>
+                <Text>Hello, Navigation!</Text>
             </View>
         );
     }
 
 }
 
-AppRegistry.registerComponent('QuHeart4', () => QuHeart4);
+AppRegistry.registerComponent('QuHeart4', () => HomeScreen);

@@ -5,58 +5,58 @@
  */
 
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Image, Alert, View, Text, TouchableOpacity, Linking,} from 'react-native';
+import {AppRegistry, StyleSheet, Image, Alert, Text,View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
+import HomeScreen from './screens/home/home'
 
 export default class IndexScreen extends Component {
-
 
     static navigationOptions = {
         title: 'Welcome',
     };
 
-    constructor(props) {
+    /*constructor(props) {
         super(props);
 
-        this.timer = setTimeout(
+        /!*this.timer = setTimeout(
             () => {
-                //Alert.alert('跳转到主界面')
-                const {navigate} = this.props.navigation;
-                navigate('Home')
+                // Alert.alert('跳转到主界面')
+                // const {navigate} = this.props.navigation;
+                // navigate('Home')
+                this._goHome.bind(this);
             },
-            3000
-        );
-    }
+            1000
+        );*!/
+    }*/
+
+    /*_goHome() {
+        // this.props.navigator.push({
+        //     title: '主界面标题',
+        //     component: Main
+        // })
+        // const { navigate } = this.props.navigation;
+        // navigate('Main')
+        this.props.navigation.navigate('Main')
+    }*/
+
+    /*_goHome = () => {
+        this.props.navigator.push({
+            title: 'Main!',
+            component: Main
+        });
+    };*/
 
     render() {
-        // const { navigate } = this.props.navigation;
-        return (
+        /*return (
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <Image source={require('./assets/images/index.png')} style={styles.backgroundImage}/>
             </View>
-        );
+        );*/
+        return <Text>Hello, Navigation!</Text>;
     }
 
 }
 
-class HomeScreen extends Component {
-    static navigationOptions = {
-        title: '主界面',
-    };
-
-    render() {
-        return (
-            <View>
-                <Text>主界面text</Text>
-            </View>
-        );
-    }
-}
-
-const SimpleApp = StackNavigator({
-    Index: {screen: IndexScreen},
-    Home: {screen: HomeScreen},
-});
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -83,5 +83,10 @@ const styles = StyleSheet.create({
     },
 });
 
+const QuHeart4 = StackNavigator({
+    Index: {screen: IndexScreen},
+    Main: {screen: HomeScreen},
+});
 
-AppRegistry.registerComponent('SimpleApp', () => SimpleApp);
+
+AppRegistry.registerComponent('QuHeart4', () => QuHeart4);

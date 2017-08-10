@@ -5,9 +5,11 @@
  */
 
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Image, Alert, Text,View} from 'react-native';
+import {AppRegistry, StyleSheet, Image, Alert, Text, View, Button} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import HomeScreen from './screens/home/home'
+
+
 
 export default class IndexScreen extends Component {
 
@@ -15,44 +17,62 @@ export default class IndexScreen extends Component {
         title: 'Welcome',
     };
 
-    /*constructor(props) {
-        super(props);
-
-        /!*this.timer = setTimeout(
+    /*componentDidMount() {
+        this.timer = setTimeout(
             () => {
-                // Alert.alert('跳转到主界面')
-                // const {navigate} = this.props.navigation;
-                // navigate('Home')
+                // console.log('把一个定时器的引用挂在this上');
                 this._goHome.bind(this);
             },
             1000
-        );*!/
+        );
+      }
+
+    componentWillUnmount() {
+        this.timer && clearTimeout(this.timer);
     }*/
 
-    /*_goHome() {
-        // this.props.navigator.push({
-        //     title: '主界面标题',
-        //     component: Main
-        // })
-        // const { navigate } = this.props.navigation;
-        // navigate('Main')
-        this.props.navigation.navigate('Main')
-    }*/
+    constructor(props) {
+        super(props);
+        // this._goHome = this._goHome.bind(this);
+        this.timer = setTimeout(
+            () => {
+                // Alert.alert('这里执行了')
+                // this._goHome()
+                // this.props.navigation.navigate('Main')
+                const { navigate } = this.props.navigation;
+                navigate.navigate('Main')
+            },
+            1000
+        );
+    }
 
     /*_goHome = () => {
-        this.props.navigator.push({
-            title: 'Main!',
-            component: Main
-        });
+        // Alert.alert('这里执行了')
+        this.props.navigation.navigate('Main')
     };*/
 
+    // _goHome() {
+    // Alert.alert('这里执行了')
+    // this.props.navigation.navigate('Main')
+    // }
+
     render() {
-        /*return (
+        const { navigate } = this.props.navigation
+        return (
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <Image source={require('./assets/images/index.png')} style={styles.backgroundImage}/>
             </View>
+        );
+        /*const { navigate } = this.props.navigation;
+        return (
+            <View>
+                <Text>Hello, Chat App!</Text>
+                <Button
+                    onPress={() => navigate('Main')}
+                    title="Chat with Lucy"
+                />
+            </View>
         );*/
-        return <Text>Hello, Navigation!</Text>;
     }
 
 }
@@ -82,6 +102,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
+
 
 const QuHeart4 = StackNavigator({
     Index: {screen: IndexScreen},

@@ -26,6 +26,7 @@ class HomeScreen extends Component {
                 </Text>
             </View>
         );
+
     }
 
     _backClick = () => {

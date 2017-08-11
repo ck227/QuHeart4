@@ -7,44 +7,31 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Image, Alert, Text, View, Button} from 'react-native';
 import {StackNavigator} from 'react-navigation';
-import HomeScreen from './screens/home/home'
-
+import HomeScreen from './screens/home'
+// import IndexScreen from './App'
 
 
 export default class IndexScreen extends Component {
 
-    static navigationOptions = {
-        title: 'Welcome',
-    };
+    // static navigationOptions = {
+    //     title: 'Welcome',
+    // };
 
-    /*componentDidMount() {
-        this.timer = setTimeout(
-            () => {
-                // console.log('把一个定时器的引用挂在this上');
-                this._goHome.bind(this);
-            },
-            1000
-        );
-      }
 
-    componentWillUnmount() {
-        this.timer && clearTimeout(this.timer);
-    }*/
-
-    constructor(props) {
+    /*constructor(props) {
         super(props);
         // this._goHome = this._goHome.bind(this);
-        this.timer = setTimeout(
+        /!*this.timer = setTimeout(
             () => {
                 // Alert.alert('这里执行了')
                 // this._goHome()
                 // this.props.navigation.navigate('Main')
-                const { navigate } = this.props.navigation;
+                const {navigate} = this.props.navigation;
                 navigate.navigate('Main')
             },
             1000
-        );
-    }
+        );*!/
+    }*/
 
     /*_goHome = () => {
         // Alert.alert('这里执行了')
@@ -57,13 +44,13 @@ export default class IndexScreen extends Component {
     // }
 
     render() {
-        const { navigate } = this.props.navigation
+        /*const {navigate} = this.props.navigation
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
                 <Image source={require('./assets/images/index.png')} style={styles.backgroundImage}/>
             </View>
-        );
-        /*const { navigate } = this.props.navigation;
+        );*/
+        const { navigate } = this.props.navigation;
         return (
             <View>
                 <Text>Hello, Chat App!</Text>
@@ -72,7 +59,7 @@ export default class IndexScreen extends Component {
                     title="Chat with Lucy"
                 />
             </View>
-        );*/
+        );
     }
 
 }

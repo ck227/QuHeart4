@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet, Image, Button} from 'react-native';
+import {AppRegistry, Text, View, StyleSheet, Image, Button,Alert} from 'react-native';
 import {DrawerNavigator} from 'react-navigation';
 import Header from './header'
 import ContentScreen from './content'
@@ -20,7 +20,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <View>
-                <Header showBack='true' title="首页" backBtnFunc={this._backClick.bind(this)}/>
+                <Header showBack='true' title="首页" backFunc={this._backClick.bind(this)}/>
                 <Text>
                     这里显示主界面
                 </Text>
@@ -30,8 +30,8 @@ class HomeScreen extends Component {
     }
 
     _backClick = () => {
-        alert("test");
-        // this.props.navigation.navigate('DrawerOpen');
+        // Alert.alert('这里执行了')
+        this.props.navigation.navigate('DrawerOpen');
     }
 }
 

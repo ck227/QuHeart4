@@ -3,6 +3,21 @@ import {AppRegistry, Text, View, StyleSheet, Image, TouchableOpacity} from 'reac
 
 export default class Header extends Component {
 
+    props: {
+        showBack: true,
+        backFunc: () => any
+    }
+
+    constructor(props) {
+        super(props);
+        this.backBtnFunc = this.backBtnFunc.bind(this);
+    }
+
+
+    backBtnFunc() {
+        this.props.backFunc ? this.props.backFunc.call(null) : this.props.navigator.pop();
+    }
+
     render() {
         return (
             <View>
@@ -15,7 +30,13 @@ export default class Header extends Component {
                             <Image style={styles.backImg} source={(require("../assets/images/menu.png"))}/>
                             : null}
                     </TouchableOpacity>
-                    <Text style={[styles.whiteColor, styles.textCenter, styles.headerText]}>{this.props.title}</Text>
+
+                    <TouchableOpacity style={styles.textCenter} underlayColor={'transparent'}>
+                        <Text style={styles.titleText} numberOfLines={1}>
+                            {this.props.title}
+                        </Text>
+                    </TouchableOpacity>
+
 
                 </View>
             </View>
@@ -27,30 +48,30 @@ export default class Header extends Component {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "#4a9df8",
-        height: 45,
+        height: 56,
         flexDirection: "row",
         alignItems: "center"
     },
     width48: {
         width: 60
     },
-    height48: {
-        height: 48
-    },
     backImg: {
         width: 24,
         height: 24,
         marginLeft: 15
     },
-    headerText: {
+    titleText: {
+        color: 'white',
         fontSize: 18,
-        flex: 1
+        paddingLeft: 10,
+        paddingRight: 10
     },
     whiteColor: {
         color: "#ffffff"
     },
     textCenter: {
-        textAlign: "center"
+        flex: 1,
+        alignItems: 'center'
     },
 });
 

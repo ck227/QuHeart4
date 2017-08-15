@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet, Image, Button,Alert} from 'react-native';
+import {AppRegistry, Text, View, StyleSheet, Image, Button, Alert} from 'react-native';
 import {DrawerNavigator} from 'react-navigation';
 import Header from './header'
 import ContentScreen from './content'
@@ -20,7 +20,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <View>
-                <Header showBack='true' title="首页" backFunc={this._backClick.bind(this)}/>
+                <Header showBack='true' title="趣心里" backFunc={this._backClick.bind(this)}/>
                 <Text>
                     这里显示主界面
                 </Text>
@@ -34,26 +34,6 @@ class HomeScreen extends Component {
         this.props.navigation.navigate('DrawerOpen');
     }
 }
-
-/*//打开的方法
-open()
-{
-    this.props.navigation.navigate('DrawerOpen');
-}
-
-//关闭的方法
-close()
-{
-    this.props.navigation.navigate('DrawerClose');
-}*/
-
-// const styles = StyleSheet.create({
-//     icon: {
-//         width: 24,
-//         height: 24,
-//     },
-// });
-
 
 export default class DrawNav extends React.Component {
 
@@ -71,22 +51,22 @@ export default class DrawNav extends React.Component {
 }
 
 const HomeConst = DrawerNavigator({
-    Home: {
+    首页: {
         screen: HomeScreen,
     },
-    Content: {
+    情感: {
         screen: ContentScreen,
     },
-    Content2: {
+    单身: {
         screen: ContentScreen,
     },
-    Content3: {
+    新闻: {
         screen: ContentScreen,
     },
-    Content4: {
+    职场: {
         screen: ContentScreen,
     },
-    Content5: {
+    搞笑: {
         screen: ContentScreen,
     },
 

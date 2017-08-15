@@ -62,10 +62,9 @@ export default class ContentScreen extends Component {
         );
     }
 
-    // _backClick() {
-    //
-    // }
-
+    _backClick = () => {
+        this.props.navigation.navigate('DrawerOpen');
+    }
 
     renderLoadingView() {
         return (

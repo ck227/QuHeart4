@@ -4,6 +4,11 @@ import {DrawerNavigator} from 'react-navigation';
 import Header from './header'
 import ContentScreen from './content'
 
+/**
+ * TODO:
+ * 左侧数据，分页，item点击跳转新界面，详情界面
+ */
+
 class HomeScreen extends Component {
 
     /*static navigationOptions = {

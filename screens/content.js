@@ -13,7 +13,16 @@ import {
 
 import Header from './header'
 
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+// var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+var REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=1&pageSize=10&qaType=16';
+//{"description":"帖子类型","id":16,"sysType":"QA_TYPE","typeName":"情感"},
+// {"description":"帖子类型","id":18,"sysType":"QA_TYPE","typeName":"人际"},
+// {"description":"帖子分类","id":37,"sysType":"QA_TYPE","typeName":"成长"},
+// {"description":"帖子类型","id":38,"sysType":"QA_TYPE","typeName":"学业"},
+// {"description":"帖子类型","id":39,"sysType":"QA_TYPE","typeName":"职场"},
+// {"description":"帖子类型","id":17,"sysType":"QA_TYPE","typeName":"健康"},
+// {"description":"帖子类型","id":41,"sysType":"QA_TYPE","typeName":"家庭"},
+// {"description":"帖子类型","id":19,"sysType":"QA_TYPE","typeName":"其他"}
 
 export default class ContentScreen extends Component {
     constructor(props) {
@@ -39,7 +48,8 @@ export default class ContentScreen extends Component {
             .then((responseData) => {
                 // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
                 this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+                    // dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+                    dataSource: this.state.dataSource.cloneWithRows(responseData.qaUserBeans),
                     loaded: true,
                 });
             });
@@ -70,54 +80,80 @@ export default class ContentScreen extends Component {
         return (
             <View style={styles.container}>
                 <Text>
-                    Loading movies...
+                    加载中...
                 </Text>
             </View>
         );
     }
 
-    renderMovie(movie) {
+    renderMovie(listdata) {
         return (
-            <View style={styles.container}>
-                <Image
-                    source={{uri: movie.posters.thumbnail}}
-                    style={styles.thumbnail}
-                />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{movie.title}</Text>
-                    <Text style={styles.year}>{movie.year}</Text>
+
+            <View style={styles.item}>
+
+                <View style={styles.container}>
+
+                    <Image
+                        source={{uri: listdata.headImg}}
+                        style={styles.thumbnail}
+                    />
+
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.title}>{listdata.qaTitle}</Text>
+                        <Text numberOfLines={2} style={styles.content}>{listdata.qaContent}</Text>
+                    </View>
+
                 </View>
+
+                <View style={styles.divider}/>
+
             </View>
         );
     }
 }
 
 var styles = StyleSheet.create({
+    item: {
+        flex: 1,
+        flexDirection: 'column',
+    },
     container: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 6
     },
     rightContainer: {
         flex: 1,
+        marginLeft: 12
     },
     title: {
-        fontSize: 20,
+        color: '#000000',
+        fontSize: 14,
         marginBottom: 8,
-        textAlign: 'center',
+        textAlign: 'left',
     },
-    year: {
-        textAlign: 'center',
+    content: {
+        color: '#999999',
+        fontSize: 12,
+        textAlign: 'left'
     },
     thumbnail: {
-        width: 53,
-        height: 81,
+        width: 80,
+        height: 60,
     },
     listView: {
-        paddingTop: 20,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
+    },
+    divider: {
+        height: 0.5,
+        backgroundColor: '#CCCCCC',
+        marginLeft: 104,
+        marginTop: 6
     },
 });
 

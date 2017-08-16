@@ -14,17 +14,24 @@ import {
 import Header from './header'
 
 // var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
-var REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=1&pageSize=10&qaType=16';
-//{"description":"帖子类型","id":16,"sysType":"QA_TYPE","typeName":"情感"},
-// {"description":"帖子类型","id":18,"sysType":"QA_TYPE","typeName":"人际"},
-// {"description":"帖子分类","id":37,"sysType":"QA_TYPE","typeName":"成长"},
-// {"description":"帖子类型","id":38,"sysType":"QA_TYPE","typeName":"学业"},
-// {"description":"帖子类型","id":39,"sysType":"QA_TYPE","typeName":"职场"},
-// {"description":"帖子类型","id":17,"sysType":"QA_TYPE","typeName":"健康"},
-// {"description":"帖子类型","id":41,"sysType":"QA_TYPE","typeName":"家庭"},
-// {"description":"帖子类型","id":19,"sysType":"QA_TYPE","typeName":"其他"}
+var REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=1&pageSize=10';//&qaType=16
+
+var ids
 
 export default class ContentScreen extends Component {
+
+    static navigationOptions = ({navigation}) => ({
+
+        // title: `Chat with ${navigation.state.params.title}`,
+    });
+
+    componentDidMount() {
+        this.props.navigation.setParams({
+            ids: `${navigation.state.params.id}`,
+            REQUEST_URL: REQUEST_URL + '&qaType=' + ids
+        })
+    }
+
     constructor(props) {
         super(props);
         this.state = {

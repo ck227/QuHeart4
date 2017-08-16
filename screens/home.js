@@ -55,25 +55,75 @@ export default class DrawNav extends React.Component {
     }
 }
 
+//{"description":"帖子类型","id":16,"sysType":"QA_TYPE","typeName":"情感"},
+// {"description":"帖子类型","id":18,"sysType":"QA_TYPE","typeName":"人际"},
+// {"description":"帖子分类","id":37,"sysType":"QA_TYPE","typeName":"成长"},
+// {"description":"帖子类型","id":38,"sysType":"QA_TYPE","typeName":"学业"},
+// {"description":"帖子类型","id":39,"sysType":"QA_TYPE","typeName":"职场"},
+// {"description":"帖子类型","id":17,"sysType":"QA_TYPE","typeName":"健康"},
+// {"description":"帖子类型","id":41,"sysType":"QA_TYPE","typeName":"家庭"},
+// {"description":"帖子类型","id":19,"sysType":"QA_TYPE","typeName":"其他"}
+
 const HomeConst = DrawerNavigator({
     首页: {
         screen: HomeScreen,
     },
     情感: {
         screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '情感',
+            id: '16'
+        }),
     },
-    单身: {
+    人际: {
         screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '人际',
+            id: '18'
+        }),
     },
-    新闻: {
+    成长: {
         screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '成长',
+            id: '37'
+        }),
+    },
+    学业: {
+        screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '学业',
+            id: '38'
+        }),
     },
     职场: {
         screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '职场',
+            id: '39'
+        }),
     },
-    搞笑: {
+    健康: {
         screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '健康',
+            id: '17'
+        }),
     },
+    家庭: {
+        screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '健康',
+            id: '41'
+        }),
+    },
+    其他: {
+        screen: ContentScreen,
+        navigationOptions: ({navigation}) => ({
+            title: '其他',
+            id: '19'
+        }),
+    }
 
 
 });

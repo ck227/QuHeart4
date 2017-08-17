@@ -5,16 +5,15 @@
  */
 
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Image, Alert, Text, View, Button} from 'react-native';
+import {AppRegistry, StyleSheet, Image, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import HomeScreen from './screens/home'
-// import IndexScreen from './App'
-
 
 export default class IndexScreen extends Component {
 
     static navigationOptions = {
-        title: 'Welcome',
+        // title: 'Welcome',
+        header: null,
     };
 
     constructor(props) {
@@ -23,7 +22,7 @@ export default class IndexScreen extends Component {
             () => {
                 this.props.navigation.navigate('Main')
             },
-            1000
+            500
         );
     }
 
@@ -63,9 +62,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const QuHeart4 = StackNavigator({
+const index = StackNavigator({
     Index: {screen: IndexScreen},
     Main: {screen: HomeScreen},
 });
 
-AppRegistry.registerComponent('QuHeart4', () => QuHeart4);
+AppRegistry.registerComponent('QuHeart4', () => index);

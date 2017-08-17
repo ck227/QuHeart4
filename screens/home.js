@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet, Image, Button, Alert} from 'react-native';
+import {AppRegistry, Text, View, ScrollView, StyleSheet, Image, Button, Alert} from 'react-native';
 import {DrawerNavigator} from 'react-navigation';
 import Header from './header'
 import ContentScreen from './content'
@@ -22,6 +22,7 @@ class HomeScreen extends Component {
         ),
     };*/
 
+
     render() {
         return (
             <View>
@@ -31,7 +32,6 @@ class HomeScreen extends Component {
                 </Text>
             </View>
         );
-
     }
 
     _backClick = () => {
@@ -55,77 +55,105 @@ export default class DrawNav extends React.Component {
     }
 }
 
-//{"description":"帖子类型","id":16,"sysType":"QA_TYPE","typeName":"情感"},
-// {"description":"帖子类型","id":18,"sysType":"QA_TYPE","typeName":"人际"},
-// {"description":"帖子分类","id":37,"sysType":"QA_TYPE","typeName":"成长"},
-// {"description":"帖子类型","id":38,"sysType":"QA_TYPE","typeName":"学业"},
-// {"description":"帖子类型","id":39,"sysType":"QA_TYPE","typeName":"职场"},
-// {"description":"帖子类型","id":17,"sysType":"QA_TYPE","typeName":"健康"},
-// {"description":"帖子类型","id":41,"sysType":"QA_TYPE","typeName":"家庭"},
-// {"description":"帖子类型","id":19,"sysType":"QA_TYPE","typeName":"其他"}
+const HomeConst = DrawerNavigator(
+    {
+        首页: {
+            screen: HomeScreen,
+        },
+        情感: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '情感',
+                id: '16'
+            }),
+        },
+        人际: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '人际',
+                id: '18'
+            }),
+        },
+        成长: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '成长',
+                id: '37'
+            }),
+        },
+        学业: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '学业',
+                id: '38'
+            }),
+        },
+        职场: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '职场',
+                id: '39'
+            }),
+        },
+        健康: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '健康',
+                id: '17'
+            }),
+        },
+        家庭: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '健康',
+                id: '41'
+            }),
+        },
+        其他: {
+            screen: ContentScreen,
+            navigationOptions: ({navigation}) => ({
+                title: '其他',
+                id: '19'
+            }),
+        },
 
-const HomeConst = DrawerNavigator({
-    首页: {
-        screen: HomeScreen,
+    }, {//这里配置参数
+        drawerWidth: 270, // 抽屉宽
+        drawerPosition: 'left',
+        contentComponent: props =>
+            <ScrollView style={styles.bg}>
+                
+                <View>
+                    <View style={styles.title}>
+                        <Image style={styles.cat} source={(require("../assets/images/cat.jpg"))}/>
+                        <Text style={styles.text}>请登录</Text>
+                    </View>
+
+                </View>
+            </ScrollView>
+    });
+
+const styles = StyleSheet.create({
+    bg: {
+        backgroundColor: "#222930",
     },
-    情感: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '情感',
-            id: '16'
-        }),
+    title: {
+        flexDirection: 'row',
+        alignItems: 'center',//按次要布局方向,控制字元素的布局，
+        marginTop: 16
     },
-    人际: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '人际',
-            id: '18'
-        }),
+    cat: {
+        width: 48,
+        height: 48,
+        marginLeft: 16
     },
-    成长: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '成长',
-            id: '37'
-        }),
-    },
-    学业: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '学业',
-            id: '38'
-        }),
-    },
-    职场: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '职场',
-            id: '39'
-        }),
-    },
-    健康: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '健康',
-            id: '17'
-        }),
-    },
-    家庭: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '健康',
-            id: '41'
-        }),
-    },
-    其他: {
-        screen: ContentScreen,
-        navigationOptions: ({navigation}) => ({
-            title: '其他',
-            id: '19'
-        }),
+    text: {
+        flex: 1,
+        color: '#91969d',
+        fontSize: 16,
+        textAlign: 'left',
+        marginLeft: 16
     }
-
-
 });
 
 AppRegistry.registerComponent('QuHeart4', () => HomeConst);

@@ -27,8 +27,8 @@ export default class ContentScreen extends Component {
 
     componentDidMount() {
         this.props.navigation.setParams({
-            ids: `${navigation.state.params.id}`,
-            REQUEST_URL: REQUEST_URL + '&qaType=' + ids
+            // ids: `${navigation.state.params.id}`,
+            // REQUEST_URL: REQUEST_URL + '&qaType=' + ids
         })
     }
 
@@ -40,6 +40,7 @@ export default class ContentScreen extends Component {
             }),
             loaded: false,
         };
+        // REQUEST_URL: REQUEST_URL + props.key.id
         // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
         // 像下面这行代码一样，在constructor中使用bind是其中一种做法（还有一些其他做法，如使用箭头函数等）
         this.fetchData = this.fetchData.bind(this);
@@ -158,7 +159,7 @@ var styles = StyleSheet.create({
     },
     divider: {
         height: 0.5,
-        backgroundColor: '#CCCCCC',
+        backgroundColor: '#999999',
         marginLeft: 104,
         marginTop: 6
     },

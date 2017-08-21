@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Image, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
-import HomeScreen from './screens/home'
+import MainScreen from './screens/main'
 
 export default class IndexScreen extends Component {
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 
 const index = StackNavigator({
     Index: {screen: IndexScreen},
-    Main: {screen: HomeScreen},
+    Main: {screen: MainScreen},
 });
 
 AppRegistry.registerComponent('QuHeart4', () => index);

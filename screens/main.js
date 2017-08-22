@@ -11,7 +11,13 @@ export default class DrawNav extends React.Component {
         header: null,
     };
 
+    constructor(props) {
+        super(props);
+    }
+
+
     render() {
+        // const {navigate} = this.props.navigation;
         return (
             <View style={{flex: 1, marginTop: 20}}>
                 <HomeConst/>
@@ -20,15 +26,16 @@ export default class DrawNav extends React.Component {
     }
 }
 
-_backClick = () => {
-    Alert.alert("dsfdf")
-    this.props.navigation.navigate('hello')
-}
+
+// comeOn = () => {
+//     Alert.alert("dsfdf")
+//     this.props.navigation.navigate('hello')
+// }
 
 const HomeConst = DrawerNavigator(
     {
         首页: {screen: HomeScreen},
-        hello: {screen: ContentScreen},
+        hello: {screen: ContentScreen}
     },
     {//这里配置参数
         header: null,
@@ -64,20 +71,24 @@ const HomeConst = DrawerNavigator(
                 </View>
 
                 {/*下面的内容列表*/}
-                <View style={styles.contentItem}>
-                    {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
-                    <Text style={styles.contentText}>首页</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
+                <TouchableOpacity onPress={() => Alert.alert("这特么怎么打开啊")}>
+                    <View style={styles.contentItem}>
+                        {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
+                        <Text style={styles.contentText}>首页</Text>
+                        <View style={styles.arrowParent}>
+                            <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>情感</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
+                <TouchableOpacity onPress={() => this.props.navigator.navigate('content')}>
+                    <View style={styles.contentItem2}>
+                        <Text style={styles.contentText}>情感</Text>
+                        <View style={styles.arrowParent}>
+                            <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.contentItem2}>
                     <Text style={styles.contentText}>人际</Text>
@@ -121,7 +132,7 @@ const HomeConst = DrawerNavigator(
                     </View>
                 </View>
 
-                <TouchableOpacity onPress={() => this._backClick}>
+                <TouchableOpacity>
                     <View style={styles.contentItem2}>
                         <Text style={styles.contentText}>其他</Text>
                         <View style={styles.arrowParent}>
@@ -133,7 +144,8 @@ const HomeConst = DrawerNavigator(
 
                 {/*</View>*/}
             </ScrollView>
-    })
+    }
+    )
 ;
 
 const styles = StyleSheet.create({
@@ -212,6 +224,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     }
 
+});
+
+const index = StackNavigator({
+    drawNav: {screen: DrawNav},
+    content: {screen: HomeConst},
 });
 
 AppRegistry.registerComponent('QuHeart4', () => HomeConst);

@@ -3,6 +3,7 @@ import {AppRegistry, Text, View, ScrollView, StyleSheet, Image, TouchableOpacity
 import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import HomeScreen from './home'
 import ContentScreen from './content'
+import SideBar from './sideBar'
 
 export default class DrawNav extends React.Component {
 
@@ -27,10 +28,10 @@ export default class DrawNav extends React.Component {
 }
 
 
-// comeOn = () => {
-//     Alert.alert("dsfdf")
-//     this.props.navigation.navigate('hello')
-// }
+_backClick = () => {
+    // Alert.alert("dsfdf")
+    this.props.navigation.navigate('hello')
+}
 
 const HomeConst = DrawerNavigator(
     {
@@ -43,107 +44,7 @@ const HomeConst = DrawerNavigator(
         drawerPosition: 'left',
         // activeTintColor:'#ffffff',
         contentComponent: props =>
-            <ScrollView style={styles.bg}>
-
-                <View>
-                    <View style={styles.title}>
-                        <Image style={styles.cat} source={(require("../assets/images/cat.jpg"))}/>
-                        <Text style={styles.text}>请登录</Text>
-                    </View>
-                </View>
-
-                {/*中间的内容*/}
-                <View style={styles.centerItem}>
-                    <View style={styles.centerItems}>
-                        <Image style={styles.itemsIcon} source={(require("../assets/images/collect.png"))}/>
-                        <Text style={styles.itemsText}>收藏</Text>
-                    </View>
-
-                    <View style={styles.centerItems}>
-                        <Image style={styles.itemsIcon} source={(require("../assets/images/alarm.png"))}/>
-                        <Text style={styles.itemsText}>消息</Text>
-                    </View>
-
-                    <View style={styles.centerItems}>
-                        <Image style={styles.itemsIcon} source={(require("../assets/images/setting.png"))}/>
-                        <Text style={styles.itemsText}>设置</Text>
-                    </View>
-                </View>
-
-                {/*下面的内容列表*/}
-                <TouchableOpacity onPress={() => Alert.alert("这特么怎么打开啊")}>
-                    <View style={styles.contentItem}>
-                        {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
-                        <Text style={styles.contentText}>首页</Text>
-                        <View style={styles.arrowParent}>
-                            <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => this.props.navigator.navigate('content')}>
-                    <View style={styles.contentItem2}>
-                        <Text style={styles.contentText}>情感</Text>
-                        <View style={styles.arrowParent}>
-                            <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>人际</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>成长</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>学业</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>职场</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>健康</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <View style={styles.contentItem2}>
-                    <Text style={styles.contentText}>家庭</Text>
-                    <View style={styles.arrowParent}>
-                        <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                    </View>
-                </View>
-
-                <TouchableOpacity>
-                    <View style={styles.contentItem2}>
-                        <Text style={styles.contentText}>其他</Text>
-                        <View style={styles.arrowParent}>
-                            <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                {/*内容列表结束*/}
-
-                {/*</View>*/}
-            </ScrollView>
+            <SideBar backFunc={this._backClick.bind(this)}/>
     }
     )
 ;

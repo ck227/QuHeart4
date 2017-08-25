@@ -1,17 +1,29 @@
 import React, {Component} from 'react'
-import {AppRegistry, Text, View, StyleSheet, Image, TouchableOpacity,ScrollView} from 'react-native'
+import {
+    AppRegistry,
+    DrawerItems,
+    Alert,
+    Text,
+    View,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+    ScrollView
+} from 'react-native'
 
 export default class SideBar extends Component {
 
-    constructor(props) {
-        super(props);
-        this.backBtnFunc = this.backBtnFunc.bind(this);
-    }
+    static navigationOptions = {}
 
-    backBtnFunc() {
-        // this.props.backFunc ? this.props.backFunc.call(null) : this.props.navigator.pop();
-        this.props.backFunc.call(null)
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.backBtnFunc = this.backBtnFunc.bind(this);
+    // }
+
+    // backBtnFunc() {
+    //     // this.props.backFunc ? this.props.backFunc.call(null) : this.props.navigator.pop();
+    //     this.props.backFunc.call(null)
+    // }
 
     render() {
         return (
@@ -53,7 +65,9 @@ export default class SideBar extends Component {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => this.backBtnFunc()}>
+                <TouchableOpacity onPress={() => {
+                    this.props.navigation.navigate('DrawerClose')
+                }}>
                     <View style={styles.contentItem2}>
                         <Text style={styles.contentText}>情感</Text>
                         <View style={styles.arrowParent}>
@@ -112,6 +126,8 @@ export default class SideBar extends Component {
                         </View>
                     </View>
                 </TouchableOpacity>
+
+
                 {/*内容列表结束*/}
 
                 {/*</View>*/}

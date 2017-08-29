@@ -5,7 +5,7 @@ import HomeScreen from './home'
 import ContentScreen from './content'
 import SideBar from './sideBar'
 
-export default class DrawNav extends React.Component {
+export default class Navi extends React.Component {
 
     //主界面的侧滑框架
     static navigationOptions = {
@@ -19,7 +19,7 @@ export default class DrawNav extends React.Component {
     render() {
         return (
             <View style={{flex: 1, marginTop: 20}}>
-                <Main/>
+                <FDF/>
             </View>
         );
     }
@@ -31,22 +31,3 @@ const FDF = StackNavigator({
     Home: {screen: HomeScreen},
     Content: {screen: ContentScreen},
 });
-
-
-const Main = DrawerNavigator(
-    {
-        首页: {screen: HomeScreen}
-    },
-    {//这里配置参数
-        header: null,
-        drawerWidth: 270, // 抽屉宽
-        drawerPosition: 'left',
-        // activeTintColor:'#ffffff',
-        contentComponent: props =>
-            <SideBar/>
-    },
-    )
-;
-
-
-// AppRegistry.registerComponent('QuHeart4', () => cons);

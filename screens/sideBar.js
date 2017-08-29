@@ -15,17 +15,22 @@ export default class SideBar extends Component {
 
     static navigationOptions = {}
 
-    // constructor(props) {
-    //     super(props);
-    //     this.backBtnFunc = this.backBtnFunc.bind(this);
+    // props: {
+    //     showBack: true,
+    //     backFunc: () => any
     // }
 
-    // backBtnFunc() {
-    //     // this.props.backFunc ? this.props.backFunc.call(null) : this.props.navigator.pop();
-    //     this.props.backFunc.call(null)
-    // }
+    constructor(props) {
+        super(props);
+        this.backBtnFunc = this.backBtnFunc.bind(this);
+    }
+
+    backBtnFunc() {
+        this.props.backFunc.call(null)
+    }
 
     render() {
+        const {navigation} = this.props
         return (
             <ScrollView style={styles.bg}>
 
@@ -55,7 +60,7 @@ export default class SideBar extends Component {
                 </View>
 
                 {/*下面的内容列表*/}
-                <TouchableOpacity onPress={() => Alert.alert("首页")}>
+                <TouchableOpacity onPress={() => this.props.showBack}>
                     <View style={styles.contentItem}>
                         {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
                         <Text style={styles.contentText}>首页</Text>
@@ -66,7 +71,7 @@ export default class SideBar extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => {
-                    this.props.navigation.navigate('DrawerClose')
+                    navigation.navigate('Content')
                 }}>
                     <View style={styles.contentItem2}>
                         <Text style={styles.contentText}>情感</Text>

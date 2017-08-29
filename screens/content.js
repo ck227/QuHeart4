@@ -22,6 +22,7 @@ export default class ContentScreen extends Component {
 
     static navigationOptions = ({navigation}) => ({
 
+        // pros : navigation.pros
         // title: `Chat with ${navigation.state.params.title}`,
     });
 

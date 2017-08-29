@@ -22,6 +22,7 @@ export default class Header extends Component {
         return (
             <View>
                 <View style={styles.header}>
+                    
                     <TouchableOpacity
                         hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
                         style={[styles.width48, this.props.sideWidth]}

@@ -35,7 +35,7 @@ const FDF = StackNavigator({
 
 const Main = DrawerNavigator(
     {
-        首页: {screen: HomeScreen}
+        首页: {screen: HomeScreen},
     },
     {//这里配置参数
         header: null,

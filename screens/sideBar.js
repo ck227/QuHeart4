@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {
     AppRegistry,
-    DrawerItems,
     Alert,
     Text,
     View,
@@ -10,6 +9,8 @@ import {
     TouchableOpacity,
     ScrollView
 } from 'react-native'
+import {DrawerItems} from 'react-navigation';
+
 
 export default class SideBar extends Component {
 
@@ -60,7 +61,7 @@ export default class SideBar extends Component {
                 </View>
 
                 {/*下面的内容列表*/}
-                <TouchableOpacity onPress={() => this.props.showBack}>
+                <TouchableOpacity onPress={() => Alert.alert('首页')}>
                     <View style={styles.contentItem}>
                         {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
                         <Text style={styles.contentText}>首页</Text>
@@ -68,17 +69,17 @@ export default class SideBar extends Component {
                             <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
                         </View>
                     </View>
+
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Content')
-                }}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigation('contentIndex')}>
                     <View style={styles.contentItem2}>
                         <Text style={styles.contentText}>情感</Text>
                         <View style={styles.arrowParent}>
                             <Image style={styles.contentArrow} source={(require("../assets/images/arrow_right.png"))}/>
                         </View>
                     </View>
+
                 </TouchableOpacity>
 
                 <View style={styles.contentItem2}>

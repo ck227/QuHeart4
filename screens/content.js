@@ -9,6 +9,7 @@ import {
     StyleSheet,
     Text,
     View,
+    Alert
 } from 'react-native';
 
 import Header from './header'
@@ -20,8 +21,10 @@ var ids
 
 export default class ContentScreen extends Component {
 
-    static navigationOptions = ({navigation}) => ({
 
+    static navigationOptions = ({navigation, banner}) => ({
+
+        // this.state = { showText: true };
         // pros : navigation.pros
         // title: `Chat with ${navigation.state.params.title}`,
     });
@@ -40,6 +43,7 @@ export default class ContentScreen extends Component {
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
             loaded: false,
+            // id: 0
         };
         // REQUEST_URL: REQUEST_URL + props.key.id
         // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
@@ -52,7 +56,8 @@ export default class ContentScreen extends Component {
     }
 
     fetchData() {
-        fetch(REQUEST_URL)
+        // this.props.showBack ? this.backBtnFunc : undefined
+        fetch(ids ? REQUEST_URL + '&qaType=' + ids : REQUEST_URL)
             .then((response) => response.json())
             .then((responseData) => {
                 // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
@@ -65,13 +70,13 @@ export default class ContentScreen extends Component {
     }
 
     render() {
+        ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : undefined
         if (!this.state.loaded) {
             return this.renderLoadingView();
         }
-
         return (
             <View>
-                <Header showBack='false' title="趣心里" backFunc={this._backClick.bind(this)}/>
+                <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderMovie}
@@ -97,25 +102,17 @@ export default class ContentScreen extends Component {
 
     renderMovie(listdata) {
         return (
-
             <View style={styles.item}>
-
                 <View style={styles.container}>
-
                     <Image
                         source={{uri: listdata.headImg}}
-                        style={styles.thumbnail}
-                    />
-
+                        style={styles.thumbnail}/>
                     <View style={styles.rightContainer}>
                         <Text style={styles.title}>{listdata.qaTitle}</Text>
                         <Text numberOfLines={2} style={styles.content}>{listdata.qaContent}</Text>
                     </View>
-
                 </View>
-
                 <View style={styles.divider}/>
-
             </View>
         );
     }

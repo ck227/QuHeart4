@@ -12,7 +12,10 @@ import {
     Alert
 } from 'react-native';
 
+import {StackNavigator} from 'react-navigation';
 import Header from './header'
+import ContentDetail from './contentDetail'
+
 
 // var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 var REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=1&pageSize=10';//&qaType=16
@@ -21,19 +24,8 @@ var ids
 
 export default class ContentScreen extends Component {
 
-
-    static navigationOptions = ({navigation, banner}) => ({
-
-        // this.state = { showText: true };
-        // pros : navigation.pros
-        // title: `Chat with ${navigation.state.params.title}`,
-    });
-
-    componentDidMount() {
-        this.props.navigation.setParams({
-            // ids: `${navigation.state.params.id}`,
-            // REQUEST_URL: REQUEST_URL + '&qaType=' + ids
-        })
+    _backClick = () => {
+        this.props.navigation.navigate('DrawerOpen');
     }
 
     constructor(props) {
@@ -42,10 +34,8 @@ export default class ContentScreen extends Component {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             }),
-            loaded: false,
-            // id: 0
+            loaded: false
         };
-        // REQUEST_URL: REQUEST_URL + props.key.id
         // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
         // 像下面这行代码一样，在constructor中使用bind是其中一种做法（还有一些其他做法，如使用箭头函数等）
         this.fetchData = this.fetchData.bind(this);
@@ -62,7 +52,6 @@ export default class ContentScreen extends Component {
             .then((responseData) => {
                 // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
                 this.setState({
-                    // dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
                     dataSource: this.state.dataSource.cloneWithRows(responseData.qaUserBeans),
                     loaded: true,
                 });
@@ -86,10 +75,6 @@ export default class ContentScreen extends Component {
         );
     }
 
-    _backClick = () => {
-        this.props.navigation.navigate('DrawerOpen');
-    }
-
     renderLoadingView() {
         return (
             <View style={styles.container}>
@@ -102,7 +87,7 @@ export default class ContentScreen extends Component {
 
     renderMovie(listdata) {
         return (
-            <View style={styles.item}>
+            <View style={styles.item} onPress={this.props.navigation.navigate('detail')}>
                 <View style={styles.container}>
                     <Image
                         source={{uri: listdata.headImg}}
@@ -163,4 +148,8 @@ var styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('QuHeart4', () => list);
+const index = StackNavigator({
+    detail: {screen: ContentDetail},
+});
+
+AppRegistry.registerComponent('QuHeart4', () => index);

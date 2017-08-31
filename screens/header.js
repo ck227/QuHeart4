@@ -22,9 +22,8 @@ export default class Header extends Component {
         return (
             <View>
                 <View style={styles.header}>
-                    
+
                     <TouchableOpacity
-                        hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
                         style={[styles.width48, this.props.sideWidth]}
                         onPress={this.props.showBack ? this.backBtnFunc : undefined}>
                         {this.props.showBack ?
@@ -32,11 +31,13 @@ export default class Header extends Component {
                             : null}
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.textCenter} underlayColor={'transparent'}>
-                        <Text style={styles.titleText} numberOfLines={1}>
-                            {this.props.title}
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.title}>
+                        <TouchableOpacity underlayColor={'transparent'}>
+                            <Text style={styles.titleText} numberOfLines={1}>
+                                {this.props.title}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
 
 
                 </View>
@@ -51,7 +52,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#4a9df8",
         height: 56,
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: 'space-around'
     },
     width48: {
         width: 60
@@ -63,17 +65,18 @@ const styles = StyleSheet.create({
     },
     titleText: {
         color: 'white',
-        fontSize: 18,
-        paddingLeft: 10,
-        paddingRight: 10
+        fontSize: 18
     },
     whiteColor: {
         color: "#ffffff"
     },
-    textCenter: {
-        flex: 1,
-        alignItems: 'center'
-    },
+    title:{
+        flex:1,
+        marginRight:60,
+        justifyContent:'center',
+        alignItems:'center'
+
+    }
 });
 
 AppRegistry.registerComponent('QuHeart4', () => Header);

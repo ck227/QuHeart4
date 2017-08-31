@@ -291,6 +291,9 @@ const Main = DrawerNavigator(
         drawerPosition: 'left',
         inactiveTintColor: '#000000',
         activeTintColor: '#1eacff',
+        backgroundColor: '#1b2328',
+        inactiveBackgroundColor: '#242b30',
+
     },
     )
 ;

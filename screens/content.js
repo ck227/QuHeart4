@@ -5,24 +5,24 @@ import React, {
 import {
     AppRegistry,
     Image,
-    ListView,
     StyleSheet,
     Text,
     View,
-    Alert
+    FlatList,
+    ActivityIndicator
 } from 'react-native';
+
 
 import {StackNavigator} from 'react-navigation';
 import Header from './header'
 import ContentDetail from './contentDetail'
 
-
 // var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
-var REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=1&pageSize=10';//&qaType=16
+// const REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10';//&qaType=16
 
 var ids
 
-export default class ContentScreen extends Component {
+export default class ContentScreen extends React.Component {
 
     _backClick = () => {
         this.props.navigation.navigate('DrawerOpen');
@@ -30,64 +30,207 @@ export default class ContentScreen extends Component {
 
     constructor(props) {
         super(props);
+        // this.state = {
+        //     dataSource: new ListView.DataSource({
+        //         rowHasChanged: (row1, row2) => row1 !== row2,
+        //     }),
+        //     loaded: false
+        // };
+        // // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
+        // // 像下面这行代码一样，在constructor中使用bind是其中一种做法（还有一些其他做法，如使用箭头函数等）
+        // this.fetchData = this.fetchData.bind(this);
         this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            }),
-            loaded: false
+            loading: false,
+            data: [],
+            page: 1,
+            seed: 1,
+            error: null,
+            refreshing: false
         };
-        // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
-        // 像下面这行代码一样，在constructor中使用bind是其中一种做法（还有一些其他做法，如使用箭头函数等）
-        this.fetchData = this.fetchData.bind(this);
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.makeRemoteRequest();
     }
 
-    fetchData() {
+    makeRemoteRequest = () => {
         // this.props.showBack ? this.backBtnFunc : undefined
-        fetch(ids ? REQUEST_URL + '&qaType=' + ids : REQUEST_URL)
-            .then((response) => response.json())
-            .then((responseData) => {
-                // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
+        // fetch(ids ? REQUEST_URL + '&qaType=' + ids : REQUEST_URL)
+        //     .then((response) => response.json())
+        //     .then((responseData) => {
+        //         // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
+        //         this.setState({
+        //             dataSource: this.state.dataSource.cloneWithRows(responseData.qaUserBeans),
+        //             loaded: true,
+        //         });
+        //     });
+        const {page} = this.state;
+        const url = `https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10`;
+        url : ids ? url + '&qaType=' + ids : url
+        this.setState({loading: true});
+
+        fetch(url)
+            .then(res => res.json())
+            .then(res => {
                 this.setState({
-                    dataSource: this.state.dataSource.cloneWithRows(responseData.qaUserBeans),
-                    loaded: true,
+                    data: page === 1 ? res.qaUserBeans : [...this.state.data, ...res.qaUserBeans],
+                    error: res.error || null,
+                    loading: false,
+                    refreshing: false
                 });
+            })
+            .catch(error => {
+                this.setState({error, loading: false});
             });
     }
 
+    handleRefresh = () => {
+        this.setState(
+            {
+                page: 1,
+                // seed: this.state.seed + 1,
+                refreshing: true
+            },
+            () => {
+                this.makeRemoteRequest();
+            }
+        );
+    };
+
+    handleLoadMore = () => {
+        this.setState(
+            {
+                page: this.state.page + 1
+            },
+            () => {
+                this.makeRemoteRequest();
+            }
+        );
+    };
+
+    renderSeparator = () => {
+        return (
+            <View
+                style={{
+                    height: 1,
+                    width: "86%",
+                    backgroundColor: "#CED0CE",
+                    marginLeft: "14%"
+                }}
+            />
+        );
+    };
+
+    renderHeader = () => {
+        // return <SearchBar placeholder="Type Here..." lightTheme round/>;
+        return <Text>这里是列表头部</Text>;
+    };
+
+    renderFooter = () => {
+        if (!this.state.loading) return null;
+
+        return (
+            <View
+                style={{
+                    paddingVertical: 20,
+                    borderTopWidth: 1,
+                    borderColor: "#CED0CE"
+                }}
+            >
+                <ActivityIndicator animating size="large"/>
+            </View>
+        );
+    };
+
     render() {
-        ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : undefined
-        if (!this.state.loaded) {
-            return this.renderLoadingView();
-        }
         return (
             <View>
                 <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderMovie}
-                    style={styles.listView}
+                {/*<List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0}}>*/}
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({item}) => (
+                        // this.renderMovie
+                        <View style={styles.item}>
+                            <View style={styles.container}>
+                                <Image
+                                    source={{uri: item.headImg}}
+                                    style={styles.thumbnail}/>
+                                <View style={styles.rightContainer}>
+                                    <Text style={styles.title}>{item.qaTitle}</Text>
+                                    <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.divider}/>
+                        </View>
+                    )}
+                    // renderItem={this._renderItem}
+                    // renderItem={this.renderMovie}
+                    keyExtractor={item => item.qaId}
+                    ItemSeparatorComponent={this.renderSeparator()}
+                    ListHeaderComponent={this.renderHeader}
+                    ListFooterComponent={this.renderFooter}
+                    onRefresh={this.handleRefresh}
+                    refreshing={this.state.refreshing}
+                    onEndReached={this.handleLoadMore}
+                    onEndReachedThreshold={50}
                 />
+                {/*</List>*/}
             </View>
         );
     }
 
-    renderLoadingView() {
+
+    // render() {
+    //     ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : undefined
+    //     if (!this.state.loaded) {
+    //         return this.renderLoadingView();
+    //     }
+    //     return (
+    //         <View>
+    //             <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
+    //             <ListView
+    //                 dataSource={this.state.dataSource}
+    //                 renderRow={this.renderMovie}
+    //                 style={styles.listView}
+    //             />
+    //         </View>
+    //     );
+    // }
+    //
+    // renderLoadingView() {
+    //     return (
+    //         <View style={styles.container}>
+    //             <Text>
+    //                 加载中...
+    //             </Text>
+    //         </View>
+    //     );
+    // }
+
+    _renderItem = (item) => {
+        // var txt = '第' + item.index + '个' + ' title=' + item.item.title;
+        // var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
         return (
-            <View style={styles.container}>
-                <Text>
-                    加载中...
-                </Text>
+            <View style={styles.item}>
+                <View style={styles.container}>
+                    <Image
+                        source={{uri: item.headImg}}
+                        style={styles.thumbnail}/>
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.title}>{item.qaTitle}</Text>
+                        <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
+                    </View>
+                </View>
+                <View style={styles.divider}/>
             </View>
         );
     }
+
 
     renderMovie(listdata) {
         return (
-            <View style={styles.item} onPress={this.props.navigation.navigate('detail')}>
+            <View style={styles.item}>
                 <View style={styles.container}>
                     <Image
                         source={{uri: listdata.headImg}}
@@ -148,8 +291,10 @@ var styles = StyleSheet.create({
     },
 });
 
-const index = StackNavigator({
-    detail: {screen: ContentDetail},
-});
+// const index = StackNavigator({
+//     detail: {screen: ContentDetail},
+// });
 
-AppRegistry.registerComponent('QuHeart4', () => index);
+// export default ContentScreen;
+
+// AppRegistry.registerComponent('QuHeart4', () => ContentScreen);

@@ -1,6 +1,4 @@
-import React, {
-    Component,
-} from 'react';
+import React from 'react';
 
 import {
     AppRegistry,
@@ -67,6 +65,8 @@ export default class ContentScreen extends React.Component {
         const {page} = this.state;
         const url = `https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10`;
         url : ids ? url + '&qaType=' + ids : url
+        // const url = `https://randomuser.me/api/?page=${page}&results=20`;
+
         this.setState({loading: true});
 
         fetch(url)
@@ -146,27 +146,26 @@ export default class ContentScreen extends React.Component {
         return (
             <View>
                 <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
-                {/*<List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0}}>*/}
+
                 <FlatList
                     data={this.state.data}
                     renderItem={({item}) => (
-                        // this.renderMovie
-                        <View style={styles.item}>
+                        <Text>sdfsfsff</Text>
+                        /*<View style={styles.item}>
                             <View style={styles.container}>
                                 <Image
-                                    source={{uri: item.headImg}}
+                                    source={{uri: item.name.title}}
                                     style={styles.thumbnail}/>
                                 <View style={styles.rightContainer}>
-                                    <Text style={styles.title}>{item.qaTitle}</Text>
-                                    <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
+                                    <Text style={styles.title}>{item.name.title}</Text>
+                                    <Text numberOfLines={2} style={styles.content}>{item.name.title}</Text>
                                 </View>
                             </View>
                             <View style={styles.divider}/>
-                        </View>
+                        </View>*/
                     )}
-                    // renderItem={this._renderItem}
-                    // renderItem={this.renderMovie}
-                    keyExtractor={item => item.qaId}
+                    // keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => item.qaId}
                     ItemSeparatorComponent={this.renderSeparator()}
                     ListHeaderComponent={this.renderHeader}
                     ListFooterComponent={this.renderFooter}
@@ -175,29 +174,12 @@ export default class ContentScreen extends React.Component {
                     onEndReached={this.handleLoadMore}
                     onEndReachedThreshold={50}
                 />
-                {/*</List>*/}
+
             </View>
         );
     }
 
 
-    // render() {
-    //     ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : undefined
-    //     if (!this.state.loaded) {
-    //         return this.renderLoadingView();
-    //     }
-    //     return (
-    //         <View>
-    //             <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
-    //             <ListView
-    //                 dataSource={this.state.dataSource}
-    //                 renderRow={this.renderMovie}
-    //                 style={styles.listView}
-    //             />
-    //         </View>
-    //     );
-    // }
-    //
     // renderLoadingView() {
     //     return (
     //         <View style={styles.container}>
@@ -207,26 +189,6 @@ export default class ContentScreen extends React.Component {
     //         </View>
     //     );
     // }
-
-    _renderItem = (item) => {
-        // var txt = '第' + item.index + '个' + ' title=' + item.item.title;
-        // var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
-        return (
-            <View style={styles.item}>
-                <View style={styles.container}>
-                    <Image
-                        source={{uri: item.headImg}}
-                        style={styles.thumbnail}/>
-                    <View style={styles.rightContainer}>
-                        <Text style={styles.title}>{item.qaTitle}</Text>
-                        <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
-                    </View>
-                </View>
-                <View style={styles.divider}/>
-            </View>
-        );
-    }
-
 
     renderMovie(listdata) {
         return (

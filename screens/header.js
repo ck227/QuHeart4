@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {AppRegistry, Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native'
 
-export default class Header extends Component {
+export default class Header extends React.Component {
 
     props: {
         showBack: true,

@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Image, Alert, Text, View, Button} from 'react-native';
 import {StackNavigator} from 'react-navigation';
-import HomeScreen from './screens/home'
+import HomeScreen from './screens/setting'
 // import IndexScreen from './App'
 
 

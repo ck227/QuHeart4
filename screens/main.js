@@ -10,7 +10,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {DrawerNavigator} from 'react-navigation';
-import HomeScreen from './home'
+import HomeScreen from './setting'
 import ContentScreen from './content'
 
 export default class DrawNav extends Component {

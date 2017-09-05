@@ -126,7 +126,6 @@ class ContentScreen extends React.Component {
     };
 
     _onItemClick = () => {
-        Alert.alert('fsdf')
         this.props.navigation.navigate('detail')
     };
 

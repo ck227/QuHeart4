@@ -7,7 +7,8 @@ import {
     ScrollView,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    StackNavigator
 } from 'react-native';
 import {DrawerNavigator} from 'react-navigation';
 import HomeScreen from './setting'
@@ -285,7 +286,6 @@ const Main = DrawerNavigator(
 
     }, {
         contentComponent: SideBarScreen,
-        // initialRouteName: 'homeIndex',
         header: null,
         drawerWidth: 270,
         drawerPosition: 'left',
@@ -293,7 +293,6 @@ const Main = DrawerNavigator(
         activeTintColor: '#1eacff',
         backgroundColor: '#1b2328',
         inactiveBackgroundColor: '#242b30',
-
     },
     )
 ;

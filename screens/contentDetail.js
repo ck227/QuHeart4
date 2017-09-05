@@ -5,7 +5,8 @@ import {
     Image,
     StyleSheet,
     Text,
-    View
+    View,
+    WebView
 } from 'react-native';
 
 import HeaderBack from './headerBack'
@@ -16,6 +17,9 @@ export default class ContentDetail extends React.Component {
         return (
             <View>
                 <HeaderBack/>
+                <WebView
+                    source={{uri: 'https://qiye.quheart.com/smartHeart/front/articleAct.htm?operate=articleDetailsd&articleId=2046'}}
+                />
             </View>
         );
     }

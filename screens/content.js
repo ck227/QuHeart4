@@ -6,18 +6,22 @@ import {
     StyleSheet,
     Text,
     View,
+    Alert,
     FlatList,
     ActivityIndicator,
+    TouchableOpacity
 
 } from 'react-native';
-
+import {StackNavigator} from 'react-navigation';
 import Header from './header'
+import ContentDetail from './contentDetail'
 
 // const REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10';//&qaType=16
 
 var ids
 
-export default class ContentScreen extends React.Component {
+
+class ContentScreen extends React.Component {
 
     _backClick = () => {
         this.props.navigation.navigate('DrawerOpen');
@@ -36,6 +40,8 @@ export default class ContentScreen extends React.Component {
             error: null,
             refreshing: false
         };
+        ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : null
+        // this._onItemClick = this._onItemClick.bind(this);
     }
 
     componentDidMount() {
@@ -44,9 +50,8 @@ export default class ContentScreen extends React.Component {
 
     makeRemoteRequest = () => {
         const {page} = this.state;
-        const url = `https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10`;
-        url : ids ? url + '&qaType=' + ids : url
-        // const url = `https://randomuser.me/api/?page=${page}&results=20`;
+        var url = `https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10`;
+        url = ids ? url + '&qaType=' + ids : url
         this.setState({loading: true});
         fetch(url)
             .then(res => res.json())
@@ -120,7 +125,13 @@ export default class ContentScreen extends React.Component {
         );
     };
 
+    _onItemClick = () => {
+        Alert.alert('fsdf')
+        this.props.navigation.navigate('detail')
+    };
+
     render() {
+
         return (
             <View>
                 <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
@@ -128,18 +139,20 @@ export default class ContentScreen extends React.Component {
                     data={this.state.data}
                     renderItem={({item, index}) => (
 
-                        <View style={styles.item}>
-                            <View style={styles.container}>
-                                <Image
-                                    source={{uri: item.headImg}}
-                                    style={styles.thumbnail}/>
-                                <View style={styles.rightContainer}>
-                                    <Text style={styles.title}>{item.qaTitle}</Text>
-                                    <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
+                        <TouchableOpacity onPress={this._onItemClick}>
+                            <View style={styles.item}>
+                                <View style={styles.container}>
+                                    <Image
+                                        source={{uri: item.headImg}}
+                                        style={styles.thumbnail}/>
+                                    <View style={styles.rightContainer}>
+                                        <Text style={styles.title}>{item.qaTitle}</Text>
+                                        <Text numberOfLines={2} style={styles.content}>{item.qaContent}</Text>
+                                    </View>
                                 </View>
-                            </View>
 
-                        </View>
+                            </View>
+                        </TouchableOpacity>
                     )}
                     ItemSeparatorComponent={() =>
                         <View style={{flex: 1, flexDirection: 'row'}}>
@@ -162,7 +175,13 @@ export default class ContentScreen extends React.Component {
                     onRefresh={this.handleRefresh}
                     refreshing={this.state.refreshing}
                     onEndReached={this.handleLoadMore}
-                    onEndReachedThreshold={50}
+                    //onEndReachedThreshold={15}
+
+                    onPress={() =>
+                        Alert.alert(item.title)
+                    }
+
+
                 />
 
             </View>
@@ -216,9 +235,11 @@ var styles = StyleSheet.create({
     // },
 });
 
-// const index = StackNavigator({
-//     detail: {screen: ContentDetail},
-// });
+const index = StackNavigator({
+    content: {screen: ContentScreen},
+    detail: {screen: ContentDetail},
+});
 
+export default ContentScreen
 
-// AppRegistry.registerComponent('QuHeart4', () => ContentScreen);
+AppRegistry.registerComponent('QuHeart4', () => index);

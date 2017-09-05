@@ -36,7 +36,6 @@ export default class IndexScreen extends Component {
 
 }
 
-
 const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,

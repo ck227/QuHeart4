@@ -253,10 +253,10 @@ const SideBarScreen = ({navigation}) => (
 const Main = DrawerNavigator(
     {
         Content: {
-            screen: ContentConst,
+            screen: ContentConst
         },
         Content2: {
-            screen: ContentConst2,
+            screen: ContentConst2
         },
         Content3: {
             screen: ContentConst3,
@@ -297,6 +297,8 @@ const Main = DrawerNavigator(
     },
     )
 ;
+
+
 
 
 const styles = StyleSheet.create({

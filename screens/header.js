@@ -50,7 +50,8 @@ export default class Header extends React.Component {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "#4a9df8",
-        height: 56,
+        height: 76,
+        paddingTop:20,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: 'space-around'

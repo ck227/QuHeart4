@@ -7,32 +7,12 @@ import {
     ScrollView,
     StyleSheet,
     Image,
-    TouchableOpacity,
-    StackNavigator
+    TouchableOpacity
 } from 'react-native';
-import {DrawerNavigator} from 'react-navigation';
+import {DrawerNavigator, StackNavigator} from 'react-navigation';
 import HomeScreen from './setting'
 import ContentScreen from './content'
-
-export default class DrawNav extends Component {
-
-    //主界面的侧滑框架
-    static navigationOptions = {
-        header: null,
-    };
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Main/>
-            </View>
-        )
-    }
-}
+import ContentDetail from "./contentDetail";
 
 const SideBarView = ({navigation}) => (
     <ScrollView style={styles.bg}>
@@ -170,10 +150,25 @@ const SideBarView = ({navigation}) => (
 //         <Button onPress={() => navigation.goBack(null)} title="Go back"/>
 //     </ScrollView>
 // );
+const Test = StackNavigator({
+    Login: {
+        screen: ContentScreen,
+
+    },
+    Detail: {
+        screen: ContentDetail,
+    },
+
+}, {
+    navigationOptions: {
+        header: null
+    }
+});
 
 const HomeConst = ({navigation}) => (
     <HomeScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
 );
+
 HomeConst.navigationOptions = {
     drawerLabel: 'Setting',
 };
@@ -247,6 +242,8 @@ ContentConst9.navigationOptions = {
 const SideBarScreen = ({navigation}) => (
     <SideBarView banner={'这里可以传值到侧滑'} navigation={navigation}/>
 );
+
+
 // SideBarScreen.navigationOptions = {
 //     drawerLabel: 'Item1',
 // };
@@ -254,51 +251,46 @@ const SideBarScreen = ({navigation}) => (
 const Main = DrawerNavigator(
     {
         Content: {
-            screen: ContentConst
+            screen: Test,
         },
         Content2: {
-            screen: ContentConst2
+            screen: Test,
         },
         Content3: {
-            screen: ContentConst3,
+            screen: Test,
         },
         Content4: {
-            screen: ContentConst4,
+            screen: Test,
         },
         Content5: {
-            screen: ContentConst5,
+            screen: Test,
         },
         Content6: {
-            screen: ContentConst6,
+            screen: Test,
         },
         Content7: {
-            screen: ContentConst7,
+            screen: Test,
         },
         Content8: {
-            screen: ContentConst8,
+            screen: Test,
         },
         Content9: {
-            screen: ContentConst9,
+            screen: Test,
         },
         Setting: {
             screen: HomeConst,
         },
-
     }, {
         contentComponent: SideBarScreen,
-        header: null,
         drawerWidth: 270,
         drawerPosition: 'left',
         inactiveTintColor: '#000000',
         activeTintColor: '#1eacff',
         backgroundColor: '#1b2328',
         inactiveBackgroundColor: '#242b30',
-    },
+    }
     )
 ;
-
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -310,7 +302,7 @@ const styles = StyleSheet.create({
     },
     title: {
         flexDirection: 'row',
-        alignItems: 'center',//按次要布局方向,控制字元素的布局，
+        alignItems: 'center',
         marginTop: 16
     },
     cat: {
@@ -381,6 +373,8 @@ const styles = StyleSheet.create({
     }
 
 });
+
+export default Main
 
 
 // AppRegistry.registerComponent('QuHeart4', () => cons);

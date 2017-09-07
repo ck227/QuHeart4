@@ -20,7 +20,6 @@ import ContentDetail from './contentDetail'
 
 var ids
 
-
 class ContentScreen extends React.Component {
 
     _backClick = () => {
@@ -126,7 +125,7 @@ class ContentScreen extends React.Component {
     };
 
     _onItemClick = () => {
-        this.props.navigation.navigate('detail')
+        this.props.navigation.navigate('Detail')
     };
 
     render() {
@@ -175,18 +174,13 @@ class ContentScreen extends React.Component {
                     refreshing={this.state.refreshing}
                     onEndReached={this.handleLoadMore}
                     //onEndReachedThreshold={15}
-
-                    onPress={() =>
-                        Alert.alert(item.title)
-                    }
-
-
                 />
 
             </View>
         );
     }
 }
+
 
 var styles = StyleSheet.create({
     item: {
@@ -234,11 +228,11 @@ var styles = StyleSheet.create({
     // },
 });
 
-const index = StackNavigator({
-    content: {screen: ContentScreen},
-    detail: {screen: ContentDetail},
-});
+// const index = StackNavigator({
+//     content: {screen: ContentScreen},
+//     detail: {screen: ContentDetail},
+// });
 
 export default ContentScreen
 
-AppRegistry.registerComponent('QuHeart4', () => index);
+// AppRegistry.registerComponent('QuHeart4', () => index);

@@ -10,12 +10,12 @@ export default class HeaderBack extends React.Component {
 
     constructor(props) {
         super(props);
-        this.backBtnFunc = this.backBtnFunc.bind(this);
+        // this.backBtnFunc = this.backBtnFunc.bind(this);
     }
 
 
     backBtnFunc() {
-        this.props.backFunc.call(null)
+        // this.props.pop()
     }
 
     render() {
@@ -43,7 +43,8 @@ export default class HeaderBack extends React.Component {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "#4a9df8",
-        height: 56,
+        height: 76,
+        paddingTop:20,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: 'space-around'

@@ -246,9 +246,6 @@ ContentConst9.navigationOptions = {
 const SideBarScreen = ({navigation}) => (
     <SideBarView banner={'这里可以传值到侧滑'} navigation={navigation}/>
 );
-// SideBarScreen.navigationOptions = {
-//     drawerLabel: 'Item1',
-// };
 
 const Main = DrawerNavigator(
     {

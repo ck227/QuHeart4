@@ -119,6 +119,7 @@ class ContentScreen extends React.Component {
                     borderColor: "#CED0CE"
                 }}
             >
+
                 <ActivityIndicator animating size="large"/>
             </View>
         );

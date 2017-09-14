@@ -10,6 +10,7 @@ import {
     WebView
 } from 'react-native';
 
+
 import HeaderBack from './headerBack'
 
 export default class ContentDetail extends React.Component {

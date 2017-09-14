@@ -48,7 +48,6 @@ export default class HomeScreen extends Component {
     _backClick = () => {
         this.props.navigation.navigate('DrawerOpen');
     }
-
 }
 
 const styles = StyleSheet.create({

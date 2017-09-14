@@ -13,7 +13,6 @@ export default class HeaderBack extends React.Component {
         // this.backBtnFunc = this.backBtnFunc.bind(this);
     }
 
-
     backBtnFunc() {
         // this.props.pop()
     }

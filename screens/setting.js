@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('QuHeart4', () => HomeScreen);
+// AppRegistry.registerComponent('QuHeart4', () => HomeScreen);

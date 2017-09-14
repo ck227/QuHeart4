@@ -9,10 +9,29 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
-import {DrawerNavigator, StackNavigator} from 'react-navigation';
+import {DrawerNavigator} from 'react-navigation';
 import HomeScreen from './setting'
 import ContentScreen from './content'
-import ContentDetail from "./contentDetail";
+
+export default class DrawNav extends Component {
+
+    //主界面的侧滑框架
+    static navigationOptions = {
+        header: null,
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Main/>
+            </View>
+        )
+    }
+}
 
 const SideBarView = ({navigation}) => (
     <ScrollView style={styles.bg}>
@@ -150,25 +169,10 @@ const SideBarView = ({navigation}) => (
 //         <Button onPress={() => navigation.goBack(null)} title="Go back"/>
 //     </ScrollView>
 // );
-const Test = StackNavigator({
-    Login: {
-        screen: ContentScreen,
-
-    },
-    Detail: {
-        screen: ContentDetail,
-    },
-
-}, {
-    navigationOptions: {
-        header: null
-    }
-});
 
 const HomeConst = ({navigation}) => (
-    <HomeScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <HomeScreen banner={'设置'} navigation={navigation}/>
 );
-
 HomeConst.navigationOptions = {
     drawerLabel: 'Setting',
 };
@@ -176,63 +180,63 @@ HomeConst.navigationOptions = {
 //下面的内容
 
 const ContentConst = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner='趣心里' navigation={navigation}/>
 );
 ContentConst.navigationOptions = {
     drawerLabel: 'Content',
 };
 
 const ContentConst2 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner='情感' navigation={navigation}/>
 );
 ContentConst2.navigationOptions = {
     drawerLabel: 'Content2',
 };
 
 const ContentConst3 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'人际'} navigation={navigation}/>
 );
 ContentConst3.navigationOptions = {
     drawerLabel: 'Content3',
 };
 
 const ContentConst4 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'成长'} navigation={navigation}/>
 );
 ContentConst4.navigationOptions = {
     drawerLabel: 'Content4',
 };
 
 const ContentConst5 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'学业'} navigation={navigation}/>
 );
 ContentConst5.navigationOptions = {
     drawerLabel: 'Content5',
 };
 
 const ContentConst6 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'职场'} navigation={navigation}/>
 );
 ContentConst6.navigationOptions = {
     drawerLabel: 'Content6',
 };
 
 const ContentConst7 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'健康'} navigation={navigation}/>
 );
 ContentConst7.navigationOptions = {
     drawerLabel: 'Content7',
 };
 
 const ContentConst8 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'家庭'} navigation={navigation}/>
 );
 ContentConst8.navigationOptions = {
     drawerLabel: 'Content8',
 };
 
 const ContentConst9 = ({navigation}) => (
-    <ContentScreen banner={'这里可以传值到主界面'} navigation={navigation}/>
+    <ContentScreen banner={'其他'} navigation={navigation}/>
 );
 ContentConst9.navigationOptions = {
     drawerLabel: 'Content9',
@@ -242,8 +246,6 @@ ContentConst9.navigationOptions = {
 const SideBarScreen = ({navigation}) => (
     <SideBarView banner={'这里可以传值到侧滑'} navigation={navigation}/>
 );
-
-
 // SideBarScreen.navigationOptions = {
 //     drawerLabel: 'Item1',
 // };
@@ -251,58 +253,64 @@ const SideBarScreen = ({navigation}) => (
 const Main = DrawerNavigator(
     {
         Content: {
-            screen: Test,
+            screen: ContentConst
         },
         Content2: {
-            screen: Test,
+            screen: ContentConst2
         },
         Content3: {
-            screen: Test,
+            screen: ContentConst3,
         },
         Content4: {
-            screen: Test,
+            screen: ContentConst4,
         },
         Content5: {
-            screen: Test,
+            screen: ContentConst5,
         },
         Content6: {
-            screen: Test,
+            screen: ContentConst6,
         },
         Content7: {
-            screen: Test,
+            screen: ContentConst7,
         },
         Content8: {
-            screen: Test,
+            screen: ContentConst8,
         },
         Content9: {
-            screen: Test,
+            screen: ContentConst9,
         },
         Setting: {
             screen: HomeConst,
         },
+
     }, {
         contentComponent: SideBarScreen,
+        // initialRouteName: 'homeIndex',
+        header: null,
         drawerWidth: 270,
         drawerPosition: 'left',
         inactiveTintColor: '#000000',
         activeTintColor: '#1eacff',
         backgroundColor: '#1b2328',
         inactiveBackgroundColor: '#242b30',
-    }
+    },
     )
 ;
+
+
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
     },
     bg: {
         backgroundColor: "#222930",
+        paddingTop: Platform.OS === 'ios' ? 20 : 0,
     },
     title: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center',//按次要布局方向,控制字元素的布局，
         marginTop: 16
     },
     cat: {
@@ -373,8 +381,6 @@ const styles = StyleSheet.create({
     }
 
 });
-
-export default Main
 
 
 // AppRegistry.registerComponent('QuHeart4', () => cons);

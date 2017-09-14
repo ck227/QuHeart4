@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 import {
@@ -15,13 +16,13 @@ export default class ContentDetail extends React.Component {
 
     render() {
         return (
-            /*<View>
+            /!*<View>
                 <HeaderBack/>
                 <Text>nihao</Text>
                 <WebView style={{flex: 1, height: 350}}
                          source={{uri: 'https://qiye.quheart.com/smartHeart/front/articleAct.htm?operate=articleDetailsd&articleId=2046'}}
                 />
-            </View>*/
+            </View>*!/
 
             <View style={{flex: 1}}>
                 <HeaderBack/>
@@ -36,4 +37,4 @@ export default class ContentDetail extends React.Component {
 
 }
 
-AppRegistry.registerComponent('QuHeart4', () => ContentDetail);
+AppRegistry.registerComponent('QuHeart4', () => ContentDetail);*/

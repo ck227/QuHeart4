@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import Header from './header'
-import ContentDetail from './contentDetail'
+// import ContentDetail from './contentDetail'
 
 // const REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10';//&qaType=16
 
@@ -132,7 +132,7 @@ class ContentScreen extends React.Component {
 
         return (
             <View>
-                <Header showBack='false' title='趣心里' backFunc={this._backClick.bind(this)}/>
+                <Header showBack='false' title={this.props.banner} backFunc={this._backClick.bind(this)}/>
                 <FlatList
                     data={this.state.data}
                     renderItem={({item, index}) => (

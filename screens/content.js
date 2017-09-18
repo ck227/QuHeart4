@@ -10,13 +10,10 @@ import {
     FlatList,
     ActivityIndicator,
     TouchableOpacity
-
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import Header from './header'
-// import ContentDetail from './contentDetail'
-
-// const REQUEST_URL = 'https://qiye.quheart.com/smartHeart/front/qaAct.htm?operate=showQas2&loginName=18507104251&pageNo=${page}&pageSize=10';//&qaType=16
+import ContentDetail from './contentDetail'
 
 var ids
 
@@ -117,16 +114,14 @@ class ContentScreen extends React.Component {
                     paddingVertical: 20,
                     borderTopWidth: 1,
                     borderColor: "#CED0CE"
-                }}
-            >
-
+                }}>
                 <ActivityIndicator animating size="large"/>
             </View>
         );
     };
 
     _onItemClick = () => {
-        this.props.navigation.navigate('Detail')
+        this.props.navigation.navigate('detail')
     };
 
     render() {
@@ -229,10 +224,12 @@ var styles = StyleSheet.create({
     // },
 });
 
-// const index = StackNavigator({
-//     content: {screen: ContentScreen},
-//     detail: {screen: ContentDetail},
-// });
+const index = StackNavigator({
+    content: {screen: ContentScreen},
+    detail: {screen: ContentDetail},
+},{
+    header:null
+});
 
 export default ContentScreen
 

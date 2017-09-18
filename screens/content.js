@@ -231,6 +231,6 @@ const index = StackNavigator({
     header:null
 });
 
-export default ContentScreen
+export default index
 
 // AppRegistry.registerComponent('QuHeart4', () => index);

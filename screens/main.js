@@ -68,7 +68,7 @@ const SideBarView = ({navigation}) => (
 
         </View>
 
-        {/*下面的内容列表*/}
+        {/*下面的内容列表 //, {id: '16'}*/}
         <TouchableOpacity onPress={() => navigation.navigate('Content')}>
             <View style={styles.contentItem}>
                 {/*<Image style={styles.contentIcon} source={(require("../assets/images/home.png"))}/>*/}
@@ -80,7 +80,8 @@ const SideBarView = ({navigation}) => (
 
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content2', {id: '16'})}>
+
+        <TouchableOpacity onPress={() => navigation.navigate('Content2')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>情感</Text>
                 <View style={styles.arrowParent}>
@@ -89,7 +90,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content3', {id: '18'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content3')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>人际</Text>
                 <View style={styles.arrowParent}>
@@ -98,7 +99,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content4', {id: '37'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content4')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>成长</Text>
                 <View style={styles.arrowParent}>
@@ -107,7 +108,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content5', {id: '38'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content5')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>学业</Text>
                 <View style={styles.arrowParent}>
@@ -116,7 +117,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content6', {id: '39'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content6')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>职场</Text>
                 <View style={styles.arrowParent}>
@@ -125,7 +126,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content7', {id: '17'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content7')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>健康</Text>
                 <View style={styles.arrowParent}>
@@ -134,7 +135,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content8', {id: '41'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content8')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>家庭</Text>
                 <View style={styles.arrowParent}>
@@ -143,7 +144,7 @@ const SideBarView = ({navigation}) => (
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Content9', {id: '19'})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Content9')}>
             <View style={styles.contentItem2}>
                 <Text style={styles.contentText}>其他</Text>
                 <View style={styles.arrowParent}>
@@ -180,63 +181,63 @@ HomeConst.navigationOptions = {
 //下面的内容
 
 const ContentConst = ({navigation}) => (
-    <ContentScreen banner='趣心里' navigation={navigation}/>
+    <ContentScreen banner={'趣心里'}  navigation={navigation}/>
 );
 ContentConst.navigationOptions = {
     drawerLabel: 'Content',
 };
 
 const ContentConst2 = ({navigation}) => (
-    <ContentScreen banner='情感' navigation={navigation}/>
+    <ContentScreen banner='情感' id='16' navigation={navigation}/>
 );
 ContentConst2.navigationOptions = {
     drawerLabel: 'Content2',
 };
 
 const ContentConst3 = ({navigation}) => (
-    <ContentScreen banner={'人际'} navigation={navigation}/>
+    <ContentScreen banner='人际' id='18' navigation={navigation}/>
 );
 ContentConst3.navigationOptions = {
     drawerLabel: 'Content3',
 };
 
 const ContentConst4 = ({navigation}) => (
-    <ContentScreen banner={'成长'} navigation={navigation}/>
+    <ContentScreen banner='成长' id='37' navigation={navigation}/>
 );
 ContentConst4.navigationOptions = {
     drawerLabel: 'Content4',
 };
 
 const ContentConst5 = ({navigation}) => (
-    <ContentScreen banner={'学业'} navigation={navigation}/>
+    <ContentScreen banner='学业' id='38' navigation={navigation}/>
 );
 ContentConst5.navigationOptions = {
     drawerLabel: 'Content5',
 };
 
 const ContentConst6 = ({navigation}) => (
-    <ContentScreen banner={'职场'} navigation={navigation}/>
+    <ContentScreen banner={'职场'} id='39' navigation={navigation}/>
 );
 ContentConst6.navigationOptions = {
     drawerLabel: 'Content6',
 };
 
 const ContentConst7 = ({navigation}) => (
-    <ContentScreen banner={'健康'} navigation={navigation}/>
+    <ContentScreen banner={'健康'} id='17' navigation={navigation}/>
 );
 ContentConst7.navigationOptions = {
     drawerLabel: 'Content7',
 };
 
 const ContentConst8 = ({navigation}) => (
-    <ContentScreen banner={'家庭'} navigation={navigation}/>
+    <ContentScreen banner={'家庭'} id='41' navigation={navigation}/>
 );
 ContentConst8.navigationOptions = {
     drawerLabel: 'Content8',
 };
 
 const ContentConst9 = ({navigation}) => (
-    <ContentScreen banner={'其他'} navigation={navigation}/>
+    <ContentScreen banner={'其他'} id='19' navigation={navigation}/>
 );
 ContentConst9.navigationOptions = {
     drawerLabel: 'Content9',
@@ -250,7 +251,7 @@ const SideBarScreen = ({navigation}) => (
 const Main = DrawerNavigator(
     {
         Content: {
-            screen: ContentConst
+            screen: ContentConst,
         },
         Content2: {
             screen: ContentConst2
@@ -293,8 +294,6 @@ const Main = DrawerNavigator(
     },
     )
 ;
-
-
 
 
 const styles = StyleSheet.create({

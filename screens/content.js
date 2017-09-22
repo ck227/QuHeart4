@@ -36,7 +36,8 @@ class ContentScreen extends React.Component {
             error: null,
             refreshing: false
         };
-        ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : null
+        // ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : null
+        ids = this.props.id? this.props.id : null
         // this._onItemClick = this._onItemClick.bind(this);
     }
 
@@ -231,6 +232,6 @@ const index = StackNavigator({
     header:null
 });
 
-export default index
+export default ContentScreen
 
 // AppRegistry.registerComponent('QuHeart4', () => index);

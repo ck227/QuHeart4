@@ -16,11 +16,12 @@ import Header from './header'
 import ContentDetail from './contentDetail'
 
 var ids
+var naviga
 
 class ContentScreen extends React.Component {
 
     _backClick = () => {
-        this.props.navigation.navigate('DrawerOpen');
+        naviga.navigate('DrawerOpen');
     }
 
     constructor(props) {
@@ -36,9 +37,8 @@ class ContentScreen extends React.Component {
             error: null,
             refreshing: false
         };
-        // ids = this.props.navigation.state.params ? this.props.navigation.state.params.id : null
-        ids = this.props.id? this.props.id : null
-        // this._onItemClick = this._onItemClick.bind(this);
+        ids = this.props.id ? this.props.id : null
+        naviga = this.props.navigation
     }
 
     componentDidMount() {
@@ -69,7 +69,6 @@ class ContentScreen extends React.Component {
         this.setState(
             {
                 page: 1,
-                // seed: this.state.seed + 1,
                 refreshing: true
             },
             () => {
@@ -122,7 +121,7 @@ class ContentScreen extends React.Component {
     };
 
     _onItemClick = () => {
-        this.props.navigation.navigate('detail')
+        naviga.navigate('detail')
     };
 
     render() {
@@ -228,10 +227,10 @@ var styles = StyleSheet.create({
 const index = StackNavigator({
     content: {screen: ContentScreen},
     detail: {screen: ContentDetail},
-},{
-    header:null
+}, {
+    header: null
 });
 
-export default ContentScreen
+export default index
 
 // AppRegistry.registerComponent('QuHeart4', () => index);
